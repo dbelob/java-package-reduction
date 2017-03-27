@@ -19,7 +19,9 @@
 
     <modules>
         <module>console-nonmodular</module>
+        <module>console-modular</module>
         <module>desktop-nonmodular</module>
+        <module>desktop-modular</module>
     </modules>
 
     <build>

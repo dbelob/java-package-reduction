@@ -1,0 +1,113 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>acme</groupId>
+        <artifactId>java-package-reduction</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>desktop-modular</artifactId>
+    <packaging>jar</packaging>
+
+    <properties>
+        <app.finalName>desktop-modular</app.finalName>
+        <app.module>desktop.modular</app.module>
+        <app.mainClass>acme.desktop.modular.App</app.mainClass>
+    </properties>
+
+    <profiles>
+        <profile>
+            <id>native-deploy</id>
+            <properties>
+                <javafx.deploy.outputDirectory>${project.build.directory}/deploy</javafx.deploy.outputDirectory>
+                <javafx.deploy.jarOutputDirectory>${javafx.deploy.outputDirectory}/app</javafx.deploy.jarOutputDirectory>
+                <javafx.deploy.deployOutputDirectory>${javafx.deploy.outputDirectory}/native</javafx.deploy.deployOutputDirectory>
+                <javafx.deploy.deployOutputFile>${app.finalName}</javafx.deploy.deployOutputFile>
+                <javafx.deploy.applicationName>${app.finalName}</javafx.deploy.applicationName>
+                <javafx.deploy.applicationModule>${app.module}</javafx.deploy.applicationModule>
+                <javafx.deploy.mainClass>${app.mainClass}</javafx.deploy.mainClass>
+            </properties>
+
+            <build>
+                <finalName>${app.finalName}-${project.version}</finalName>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>${antrun.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>package</phase>
+                                <configuration>
+                                    <target>
+                                        <copy file="${project.build.directory}/${project.build.finalName}.jar"
+                                              tofile="${javafx.deploy.jarOutputDirectory}/${javafx.deploy.applicationModule}.jar"/>
+                                        <taskdef name="jfxdeploy" classname="com.sun.javafx.tools.ant.DeployFXTask"
+                                                 classpathref="maven.plugin.classpath"/>
+                                        <jfxdeploy outdir="${javafx.deploy.deployOutputDirectory}"
+                                                   outfile="${javafx.deploy.deployOutputFile}"
+                                                   nativeBundles="all" verbose="true">
+                                            <runtime>
+                                                <module-path value="${javafx.deploy.jarOutputDirectory}"/>
+                                            </runtime>
+                                            <application id="${project.artifactId}"
+                                                         name="${javafx.deploy.applicationName}"
+                                                         module="${javafx.deploy.applicationModule}"
+                                                         mainClass="${javafx.deploy.mainClass}"
+                                                         version="${project.version}"/>
+                                            <!--<resources>-->
+                                                <!--<fileset dir="${javafx.deploy.jarOutputDirectory}" includes="*.jar"/>-->
+                                            <!--</resources>-->
+                                        </jfxdeploy>
+                                    </target>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.oracle</groupId>
+                                <artifactId>ant-javafx</artifactId>
+                                <version>${project.build.javaVersion}</version>
+                                <systemPath>${java.home}/lib/ant-javafx.jar</systemPath>
+                                <scope>system</scope>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>tar-gz</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <version>${assembly.plugin.version}</version>
+                        <configuration>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <finalName>${app.finalName}-${project.version}</finalName>
+                            <descriptors>
+                                <descriptor>assembly.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>make-assembly</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>
