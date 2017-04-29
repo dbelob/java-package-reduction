@@ -4,7 +4,7 @@ The example demonstrates reduction the size of the distribution for applications
 
 ## Requirements
 
-* [JDK 9 Early Access](https://jdk9.java.net/download/)
+* [JDK 9 Early Access](http://jdk.java.net/9/)
 * [Apache Maven 3.3.9+](https://maven.apache.org/download.cgi)
 * [Inno Setup 5.5.9+](http://www.jrsoftware.org/isinfo.php)
 
