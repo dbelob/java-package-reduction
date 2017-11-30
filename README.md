@@ -4,7 +4,7 @@ The example demonstrates reduction the size of the distribution for applications
 
 ## Requirements
 
-* [JDK 9 Early Access](http://jdk.java.net/9/)
+* [JDK 9](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * [Apache Maven 3.3.9+](https://maven.apache.org/download.cgi)
 * [Inno Setup 5.5.9+](http://www.jrsoftware.org/isinfo.php)
 
@@ -25,3 +25,7 @@ For *Linux*:
 `<module name>/target/deploy/native/<file name>.dmg` (*macOS*)
 
 `<module name>/target/<file name>.tar.gz` (*Linux*)
+
+## Article
+
+See [Habrahabr](https://habrahabr.ru/company/jugru/blog/324318/) (Russian)
