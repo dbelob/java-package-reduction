@@ -9,7 +9,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.build.javaVersion>1.9</project.build.javaVersion>
+        <project.build.javaVersion>9</project.build.javaVersion>
 
         <compiler.plugin.version>3.6.1</compiler.plugin.version>
         <jar.plugin.version>3.0.2</jar.plugin.version>
