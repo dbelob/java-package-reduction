@@ -4,7 +4,7 @@ The example demonstrates reduction the size of the distribution for applications
 
 ## Requirements
 
-* [JDK 9](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+* [JDK 9+](http://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * [Apache Maven 3.3.9+](https://maven.apache.org/download.cgi)
 * [Inno Setup 5.5.9+](http://www.jrsoftware.org/isinfo.php)
 
