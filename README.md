@@ -28,4 +28,4 @@ For *Linux*:
 
 ## Article
 
-See [Habrahabr](https://habrahabr.ru/company/jugru/blog/324318/) (Russian)
+See [Habr](https://habr.com/company/jugru/blog/324318/) (Russian)
