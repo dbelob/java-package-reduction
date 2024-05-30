@@ -28,4 +28,4 @@ For *Linux*:
 
 ## Article
 
-See [Habr](https://habr.com/company/jugru/blog/324318/) (Russian)
+[Reducing distribution size in Java 9](https://habr.com/ru/companies/jugru/articles/324318/) (Russian)
